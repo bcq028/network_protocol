@@ -1,0 +1,13 @@
+{
+  "name": "network",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test": "node scripts/util_test.js"
+  },
+  "dependencies": {
+    "chalk": "^5.1.2"
+  }
+}
