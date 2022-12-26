@@ -1,5 +1,6 @@
 #include "utils.h"
 #include "chat.h"
+#include "ppp.h"
 int main()
 {
     online_chat data;
@@ -11,7 +12,7 @@ int main()
     uint8_t *row=malloc(data_len);
     row[0]=1;
     row[1]=2;
-    row[3]=3;
+    row[2]=3;
     set_IPV4(data.source,source);
     set_IPV4(data.dest,dest);
     data.source_port=src_port;
@@ -21,5 +22,6 @@ int main()
     time_t tmpcal_ptr;
     time(&tmpcal_ptr);
     data.time=*localtime(&tmpcal_ptr);
-    send(data);
+    uint8_t * ret=send(data);
+    frame_getter(ret);
 }

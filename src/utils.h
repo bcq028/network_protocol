@@ -37,3 +37,5 @@ uint8_t* concat(uint8_t* a,int a_len,uint8_t* b,int b_len);
 
 uint8_t* insert(uint8_t* buffer,int buffer_size,int index,uint8_t elem);
 #endif
+
+void printf_byte(uint8_t * start,int len);

@@ -68,3 +68,9 @@ uint8_t* insert(uint8_t* buffer,int buffer_size,int index,uint8_t elem){
     ret[index]=elem;
     return ret;
 }
+
+void printf_byte(uint8_t * start,int len){
+    for(int i=0;i<len;++i){
+        printf("%d\n",start[i]);
+    }
+}

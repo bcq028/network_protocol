@@ -4,6 +4,9 @@
         "stdbool.h": "c",
         "udp.h": "c",
         "utils.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "cstdlib": "c",
+        "ppp.h": "c",
+        "crc16.h": "c"
     }
 }

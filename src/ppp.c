@@ -70,3 +70,13 @@ uint8_t * frame_sender(uint8_t *buffer, int len)
     memcpy(ret,&data,sizeof(data));
     return ret;
 }
+
+void frame_getter(uint8_t *buffer){
+    ppp_frame data;
+    for(int i=0;;i++){
+        if(buffer[i]==0x7e){
+           break;  
+        }
+    }
+   data=*(ppp_frame*)buffer;
+}

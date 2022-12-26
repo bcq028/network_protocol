@@ -22,7 +22,7 @@ uint16_t get_check_code(udp_header header,IPV4_header fake,uint8_t* udp_data){
 
 
 // 应用层调用此方法将数据转化为udp数据报
-void udp_sender(uint8_t*data,uint16_t data_len,uint16_t source, uint16_t dest,IPV4_header fake){
+uint8_t* udp_sender(uint8_t*data,uint16_t data_len,uint16_t source, uint16_t dest,IPV4_header fake){
     udp_header header;
     //全0填充检验和字段与数据部分
     header.check[0]=0;
@@ -40,7 +40,9 @@ void udp_sender(uint8_t*data,uint16_t data_len,uint16_t source, uint16_t dest,IP
     if(flag) transfer_back(data_len-1,header.len);
     //原始数据+udp头
     uint8_t *udp_data=concat((uint8_t*)&header,sizeof(header),data,data_len);
+    printf("udp层发送数据:\n");
+    printf_byte(udp_data,data_len+sizeof(header));
     //发送ip包
-    ip_sender(udp_data,data_len+sizeof(header),flaten_uint8_tarr_to_fouruint8_t(fake.source),flaten_uint8_tarr_to_fouruint8_t(fake.dest));
+    return ip_sender(udp_data,data_len+sizeof(header),flaten_uint8_tarr_to_fouruint8_t(fake.source),flaten_uint8_tarr_to_fouruint8_t(fake.dest));
 }
 

@@ -1,4 +1,4 @@
-#ifndef _FRANE_H_
+#ifndef _FRAME_H_
 #define _FRAME_H_
 
 #include "crc16.h"
@@ -18,5 +18,11 @@ typedef struct
  * 将ip数据报封装为以太帧,返回指针
  */
 uint8_t * frame_sender(uint8_t *buffer, int len);
+
+
+/**
+ * 解析以太帧
+*/
+void frame_getter(uint8_t* buffer);
 
 #endif

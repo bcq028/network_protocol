@@ -18,13 +18,13 @@ uint16_t get_ip_check_code(ip_header header){
     return ~ret;
 }
 
-void ip_sender(uint8_t *buffer,int len,uint32_t source,uint32_t dest){
+uint8_t* ip_sender(uint8_t *buffer,int len,uint32_t source,uint32_t dest){
     ip_header header;
     header.version=4;
     header.IHL=5;
     header.DSCP=0;
     header.ECN=0;
-    header.Total_length=4*header.IHL+len; // IHL单位为4B 
+    header.Total_length=20+len; // IHL单位为4B 
     header.Identification=0;
     header.Flags=0;
     header.Fragment_offset=0;
@@ -35,6 +35,12 @@ void ip_sender(uint8_t *buffer,int len,uint32_t source,uint32_t dest){
     header.IP_dest_addr=dest;
     //计算IP检验头
     header.header_checksum=get_ip_check_code(header);
-    //TODO 将ip数据报交给数据链路层处理
-    // frame_sender(buffer,len);
+    ip_datagram datagram;
+    datagram.header=header;
+    datagram.data=buffer;
+    uint8_t* data=concat((uint8_t*)&datagram.header,sizeof(datagram.header),datagram.data,len);
+    printf("ip层发送数据\n");
+    printf_byte(data,sizeof(datagram.header)+len);
+    //将ip数据报交给数据链路层处理
+    return frame_sender(data,sizeof(datagram.header)+len);
 }

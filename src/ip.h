@@ -27,15 +27,14 @@ typedef struct
 {
     ip_header header;
     uint8_t *data;
-    int data_len;
-} ip_packet;
+} ip_datagram;
 
 uint16_t get_ip_check_code(ip_header header);
 
 /**
  * 将udp数据报封装为ip数据报
 */
-void ip_sender(uint8_t *buffer,int len,uint32_t source,uint32_t dest);
+uint8_t* ip_sender(uint8_t *buffer,int len,uint32_t source,uint32_t dest);
 
 
 #endif

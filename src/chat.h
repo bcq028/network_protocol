@@ -18,6 +18,6 @@ typedef struct
     struct tm time;
 } online_chat;
 
-void send(online_chat data);
+uint8_t* send(online_chat data);
 
 #endif
